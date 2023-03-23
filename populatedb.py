@@ -29,7 +29,7 @@ class DatabasePopulator(object):
                                FROM episode
                                WHERE season_number = ? AND episode_number = ?
                                """, (season_num, episode_num))
-        return val.next()[0]
+        return val.fetchone()[0]
 
     def _add_utterance(self, episode_id, utterance_number, speaker, utterance):
         self.cur.execute("""
@@ -43,7 +43,7 @@ class DatabasePopulator(object):
                                FROM utterance
                                WHERE episode_id = ? AND utterance_number = ?
                                """, (episode_id, utterance_number))
-        return val.next()[0]
+        return val.fetchone()[0]
 
 
     def add_episode(self, html):
